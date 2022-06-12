@@ -191,7 +191,7 @@ jobs:
       with:
         args: /usr/autodesk/maya/bin/mayapy -m unittest discover -s ./tests -v
 
-  maya2022.1:
+  maya2022sp1:
     runs-on: ubuntu-latest
 
     steps:
