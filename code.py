@@ -7,12 +7,12 @@ def make_joint(position, name):
         position (list [float, float, float]): Position for the joint
         name (str): Name for the joint to be created.
     Returns:
-        joint: newly created joint
+        joint_name: newly created joint name
     """
     # Create joint based on position and name
     cmds.select( d=True )
     joint = cmds.joint( p=position, n=name )
-    return joint
+    return name
 
 def add_to_joint_chain(position, name, parent_name):
     """Create a joint at given position with given name, and parented to the given parent joint name
@@ -21,7 +21,7 @@ def add_to_joint_chain(position, name, parent_name):
         name (str): Name for the joint to be created.
         parent_name (str): the name of the parent joint
     Returns:
-        joint: newly created joint
+        joint: newly created joint name
     """
     # In the creation mode, a new joint will be created as a child of a selected 
     # transform or starts a hierarchy by itself if no transform is selected.
@@ -32,7 +32,7 @@ def add_to_joint_chain(position, name, parent_name):
     cmds.select( parent_name )
     # Create joint based on position and name
     joint = cmds.joint( p=position, n=name )
-    return joint
+    return name
 
 def move_joint(joint_name, new_position):
     """Move given joint by name to a new position
