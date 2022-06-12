@@ -29,37 +29,19 @@ class TestJoints(MayaBaseTestCase):
     def test_joint_position(self):
         """Test whether joint was created at the correct position."""
         target_pos = [1.0, 1.0, 1.0]
-        cmds.select(clear=True)
-        cmds.select( self.joint_name )
-        selected = cmds.ls(selection=True)[0]
-        translate_x_value = cmds.getAttr("%s.translateX" % selected)
-        translate_y_value = cmds.getAttr("%s.translateX" % selected)
-        translate_z_value = cmds.getAttr("%s.translateX" % selected)
-        actual_pos = [translate_x_value, translate_y_value, translate_z_value]
+        actual_pos = cmds.xform(self.joint_name,q=1,ws=1,rp=1)
         self.assertEqual(actual_pos, target_pos)
 
     def test_joint_position_child1(self):
         """Test whether first child joint was created at the correct position."""
         target_pos = [2.2, 9.34, 6.5]
-        cmds.select(clear=True)
-        cmds.select( self.child_joint_name1 )
-        selected = cmds.ls(selection=True)[0]
-        translate_x_value = cmds.getAttr("%s.translateX" % selected)
-        translate_y_value = cmds.getAttr("%s.translateX" % selected)
-        translate_z_value = cmds.getAttr("%s.translateX" % selected)
-        actual_pos = [translate_x_value, translate_y_value, translate_z_value]
+        actual_pos = cmds.xform(self.child_joint_name1,q=1,ws=1,rp=1)
         self.assertEqual(actual_pos, target_pos)
     
     def test_joint_position_child2(self):
         """Test whether second child joint was created at the correct position."""
         target_pos = [-2.0, 5.09, -3.1]
-        cmds.select(clear=True)
-        cmds.select( self.child_joint_name2 )
-        selected = cmds.ls(selection=True)[0]
-        translate_x_value = cmds.getAttr("%s.translateX" % selected)
-        translate_y_value = cmds.getAttr("%s.translateX" % selected)
-        translate_z_value = cmds.getAttr("%s.translateX" % selected)
-        actual_pos = [translate_x_value, translate_y_value, translate_z_value]
+        actual_pos = cmds.xform(self.child_joint_name2,q=1,ws=1,rp=1)
         self.assertEqual(actual_pos, target_pos)
 
     def test_translation(self):
@@ -67,12 +49,6 @@ class TestJoints(MayaBaseTestCase):
         target_pos = [9.0, 9.0, 9.0]
         #move joint to target
         code.move_joint( self.child_joint_name1, target_pos)
-        cmds.select(clear=True)
-        cmds.select( self.child_joint_name1 )
-        selected = cmds.ls(selection=True)[0]
-        translate_x_value = cmds.getAttr("%s.translateX" % selected)
-        translate_y_value = cmds.getAttr("%s.translateX" % selected)
-        translate_z_value = cmds.getAttr("%s.translateX" % selected)
-        actual_pos = [translate_x_value, translate_y_value, translate_z_value]
+        actual_pos = cmds.xform(self.child_joint_name1,q=1,ws=1,rp=1)
         self.assertEqual(actual_pos, target_pos)
 
